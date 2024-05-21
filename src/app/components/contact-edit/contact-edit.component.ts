@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {Contact} from "../../modles/contact";
+import {Contact} from "../../models/contact";
 
 @Component({
   selector: 'app-contact-edit',

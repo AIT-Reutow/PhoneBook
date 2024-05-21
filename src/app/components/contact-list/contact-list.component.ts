@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Contact} from "../../modles/contact";
+import {Contact} from "../../models/contact";
 import {NgClass, NgForOf} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ContactEditComponent} from "../contact-edit/contact-edit.component";
