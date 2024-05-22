@@ -1,24 +1,26 @@
 <div class="card">
-  @for (contact of contacts; track contact; let e = $even) {
-    <div class="card-body mt-1"
-         [ngClass]="e ? 'bg-light':'bg-info'">
-      <div class="d-flex justify-content-between">
-        <div>
-          {{ contact.firstName }}
-          {{ contact.lastName }}
-
-          <ul class="list-group">
-            @for (email of contact.emails; track email) {
-              <li class="list-group-item">{{ email }}</li>
-            }
-          </ul>
-        </div>
-        <div class="align-content-center">
-          <button class="btn btn-primary me-3" (click)="onEdit(contact);">Edit</button>
-          <button class="btn btn-danger me-3" (click)="onDelete(contact)">Delete</button>
-        </div>
+  @if (loadInProzess) {
+    <div class="text-center p-3">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
+  } @else {
+    @for (contact of contacts; track contact; let e = $even) {
+      <ait-app-details [contactToDisplay]="contact" [isEven]="e" (contactDeleted)="onDelete($event)"></ait-app-details>
+    }
   }
+
+<!--  <div *ngIf="loadInProzess" class="text-center p-3">-->
+<!--    <div class="spinner-border" role="status">-->
+<!--      <span class="visually-hidden">Loading...</span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div *ngIf="!loadInProzess">-->
+<!--    @for (contact of contacts; track contact; let e = $even) {-->
+<!--      <ait-app-details [contactToDisplay]="contact" [isEven]="e" (contactDeleted)="onDelete($event)"></ait-app-details>-->
+<!--    }-->
+<!--  </div>-->
+
 
 </div>
