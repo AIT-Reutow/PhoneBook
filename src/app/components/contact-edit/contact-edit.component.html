@@ -1,7 +1,26 @@
-<div class="modal-body">
-  <form (ngSubmit)="onSubmit()">
-    <input class="form-control mb-3" [(ngModel)]="contact.firstName" name="firstName">
-    <input class="form-control mb-3" [(ngModel)]="contact.lastName" name="lastName">
-    <input type="submit">
-  </form>
-</div>
+@if (form) {
+  <div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input class="form-control mb-3"
+             [class.is-valid]="getControl('firstName').valid"
+             [class.valid]="getControl('firstName').invalid"
+             formControlName="firstName">
+      @if (getControl('firstName').invalid
+      && (getControl('firstName').dirty || getControl('firstName').touched)) {
+        @if (getControl('firstName').hasError("required")) {
+          * this filed can not be empty
+        }
+        @if (getControl('firstName').hasError("maxlength")) {
+          * maxlength, current length are: {{ getControl('firstName').value.length }}
+        }
+        @if (getControl('firstName').hasError("minlength")) {
+          * minlength
+        }
+      }
+      <input class="form-control mb-3" formControlName="lastName" autofocus>
+
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+}

@@ -6,21 +6,28 @@
       </div>
     </div>
   } @else {
-    @for (contact of contacts; track contact; let e = $even) {
-      <ait-app-details [contactToDisplay]="contact" [isEven]="e" (contactDeleted)="onDelete($event)"></ait-app-details>
-    }
+    <ul class="list-group">
+      @for (contact of contacts; track contact; let e = $even) {
+        <button [routerLink]="[contact.id]" class="list-group-item">
+          <span>{{ contact.firstName }} {{ contact.lastName }}</span>
+
+        </button>
+      }
+    </ul>
+
+    <router-outlet></router-outlet>
   }
 
-<!--  <div *ngIf="loadInProzess" class="text-center p-3">-->
-<!--    <div class="spinner-border" role="status">-->
-<!--      <span class="visually-hidden">Loading...</span>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div *ngIf="!loadInProzess">-->
-<!--    @for (contact of contacts; track contact; let e = $even) {-->
-<!--      <ait-app-details [contactToDisplay]="contact" [isEven]="e" (contactDeleted)="onDelete($event)"></ait-app-details>-->
-<!--    }-->
-<!--  </div>-->
+  <!--  <div *ngIf="loadInProzess" class="text-center p-3">-->
+  <!--    <div class="spinner-border" role="status">-->
+  <!--      <span class="visually-hidden">Loading...</span>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div *ngIf="!loadInProzess">-->
+  <!--    @for (contact of contacts; track contact; let e = $even) {-->
+  <!--      <ait-app-details [contactToDisplay]="contact" [isEven]="e" (contactDeleted)="onDelete($event)"></ait-app-details>-->
+  <!--    }-->
+  <!--  </div>-->
 
 
 </div>

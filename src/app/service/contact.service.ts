@@ -236,9 +236,17 @@ export class ContactService {
   edit(contactToEdit: Contact, newcontact: Contact): Contact {
     const findIndex: number | undefined = CONTACTS?.findIndex(el => el === contactToEdit);
     if (findIndex !== undefined && findIndex !== -1) {
-      CONTACTS[findIndex] = newcontact;
+      CONTACTS[findIndex] = {
+        ...contactToEdit,
+        firstName: newcontact.firstName,
+        lastName: newcontact.lastName,
+      };
       return newcontact;
     }
     throw new Error("Contact not found");
+  }
+
+  getById(contactId: number): Contact | undefined {
+    return CONTACTS.find(value => value.id === contactId);
   }
 }

@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Contact} from "../../models/contact";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ConfirmDeleteComponent} from "../confirm-delete/confirm-delete.component";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {ContactService} from "../../service/contact.service";
+import {NavBarComponent} from "../nav-bar/nav-bar.component";
+import {RouterLink, RouterOutlet} from "@angular/router";
 
 
 @Component({
@@ -16,7 +17,10 @@ import {ContactService} from "../../service/contact.service";
     NgForOf,
     NgClass,
     ContactDetailsComponent,
-    NgIf
+    NgIf,
+    NavBarComponent,
+    RouterLink,
+    RouterOutlet
   ]
 })
 export class ContactListComponent implements OnInit {
@@ -31,15 +35,6 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit(): void {
     this.contacts = this.contactService.getAll();
-    setTimeout(() => this.loadInProzess = false, 1500)
-  }
-
-  onDelete(contactToDelete: Contact): void {
-    const modalRef = this.modal.open(ConfirmDeleteComponent);
-    modalRef.closed.subscribe(value => {
-      if (value && value === 'Confirmed') {
-        this.contactService.delete(contactToDelete);
-      }
-    });
+    setTimeout(() => this.loadInProzess = false, 500)
   }
 }
