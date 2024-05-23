@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Contact} from "../models/contact";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 const CONTACTS: Contact[] = [
   {
@@ -217,11 +219,11 @@ const CONTACTS: Contact[] = [
 })
 export class ContactService {
 
-  constructor() {
+  constructor(private readonly httpClient: HttpClient) {
   }
 
-  getAll(): Contact[] {
-    return CONTACTS;
+  getAll(): Observable<Contact[]> {
+    return this.httpClient.get<Contact[]>('api/contact');
   }
 
   delete(contactToDelete: Contact): boolean {

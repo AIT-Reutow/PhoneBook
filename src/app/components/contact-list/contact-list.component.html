@@ -10,7 +10,6 @@
       @for (contact of contacts; track contact; let e = $even) {
         <button [routerLink]="[contact.id]" class="list-group-item">
           <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-
         </button>
       }
     </ul>

@@ -34,7 +34,8 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contacts = this.contactService.getAll();
+    this.contactService.getAll()
+      .subscribe();
     setTimeout(() => this.loadInProzess = false, 500)
   }
 }

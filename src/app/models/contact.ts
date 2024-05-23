@@ -2,9 +2,9 @@ export interface Contact {
   id: number;
   firstName: string;
   lastName: string;
-  phoneNumber: string;
-  emails: string[];
-  address: ContactAddress[]
+  phoneNumber?: string;
+  emails?: string[];
+  address?: ContactAddress[]
 }
 
 interface ContactAddress {
