@@ -2,7 +2,8 @@
   <div class="card-body mt-1">
     <div class="d-flex justify-content-between">
       <div>
-        {{ contact.firstName }}
+        {{ contact.firstName | titlecase }}
+        {{ contact.lastName }}
         {{ contact.lastName }}
         <ul class="list-group">
           @for (email of contact.emails; track email) {
@@ -11,11 +12,13 @@
         </ul>
       </div>
       <div class="align-content-center">
-        <button class="btn btn-primary me-3" (click)="onEdit(contact);">Edit</button>
+        <button class="btn btn-primary me-3" (click)="onEdit()">Edit</button>
         <button class="btn btn-danger me-3" (click)="onDelete(contact)">Delete</button>
       </div>
     </div>
   </div>
-} @else {
-  <ngb-alert type="warning" [dismissible]="false">Contact not found</ngb-alert>
+}
+
+@if (errorMsg) {
+  <ngb-alert type="danger" [dismissible]="false">{{ errorMsg }}</ngb-alert>
 }

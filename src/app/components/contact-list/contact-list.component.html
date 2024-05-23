@@ -6,8 +6,12 @@
       </div>
     </div>
   } @else {
+    <div class="mb-3">
+      <input type="text" [(ngModel)]="term" placeholder="Search">
+    </div>
+
     <ul class="list-group">
-      @for (contact of contacts; track contact; let e = $even) {
+      @for (contact of contacts | filter : term; track contact; let e = $even) {
         <button [routerLink]="[contact.id]" class="list-group-item">
           <span>{{ contact.firstName }} {{ contact.lastName }}</span>
         </button>

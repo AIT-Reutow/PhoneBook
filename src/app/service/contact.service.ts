@@ -235,20 +235,11 @@ export class ContactService {
     return false;
   }
 
-  edit(contactToEdit: Contact, newcontact: Contact): Contact {
-    const findIndex: number | undefined = CONTACTS?.findIndex(el => el === contactToEdit);
-    if (findIndex !== undefined && findIndex !== -1) {
-      CONTACTS[findIndex] = {
-        ...contactToEdit,
-        firstName: newcontact.firstName,
-        lastName: newcontact.lastName,
-      };
-      return newcontact;
-    }
-    throw new Error("Contact not found");
+  edit(contactId: number, newContact: Contact): Observable<Contact> {
+    return this.httpClient.put<Contact>(`api/contact/${contactId}`, newContact)
   }
 
-  getById(contactId: number): Contact | undefined {
-    return CONTACTS.find(value => value.id === contactId);
+  getById(contactId: number): Observable<Contact> {
+    return this.httpClient.get<Contact>(`api/contact/${contactId}`);
   }
 }

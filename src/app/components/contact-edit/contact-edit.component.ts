@@ -36,7 +36,7 @@ export class ContactEditComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
+  onSubmit() {
     console.log("IsFormValid", this.form.valid);
     console.log("IsFormValid required", this.form.get('firstName')?.hasError('required'));
     console.log("has error maxLength", this.form.get('firstName')?.hasError('maxlength'));
@@ -51,8 +51,9 @@ export class ContactEditComponent implements OnInit {
     //   emails: this.contact.emails,
     //   address: this.contact.address
     // }
-    this.contactService.edit(this.contact, this.form.value as Contact);
-    this.modal.close();
+
+    this.contactService.edit(this.contact.id, this.form.value as Contact)
+      .subscribe(value => this.modal.close(value));
   }
 
   getControl(controlName: string): AbstractControl {
